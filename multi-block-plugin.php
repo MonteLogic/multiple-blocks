@@ -30,6 +30,7 @@ function create_block_multi_block_plugin_block_init()
 {
 	$blocks = array(
 		'block-one/',
+		'block-two/',
 		'paragraph'
 	);
 
