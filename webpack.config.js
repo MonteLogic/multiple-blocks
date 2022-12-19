@@ -1,12 +1,36 @@
 const defaultConfig = require( '@wordpress/scripts/config/webpack.config' );
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const LiveReloadPlugin = require( 'webpack-livereload-plugin' );
-const DependencyExtractionWebpackPlugin = require( '@wordpress/dependency-extraction-webpack-plugin' );
+const DependencyExtractionWebpackPlugin = require( '@woocommerce/dependency-extraction-webpack-plugin' );
 const { CleanWebpackPlugin } = require( 'clean-webpack-plugin' );
 const path = require( 'path' );
 const glob = require('glob');
 
 const isProduction = process.env.NODE_ENV === 'development';
+
+const wcDepMap = {
+	'@woocommerce/blocks-checkout': [ 'wc', 'blocksCheckout' ],
+	'@woocommerce/shared-hocs': [ 'wc', 'wcBlocksSharedHocs' ],
+};
+const wcHandleMap = {
+	'@woocommerce/blocks-checkout': 'wc-blocks-checkout',
+	'@woocommerce/shared-hocs': 'wc-blocks-shared-hocs',
+};
+
+const requestToExternal = ( request ) => {
+	if ( wcDepMap[ request ] ) {
+		return wcDepMap[ request ];
+	}
+};
+
+const requestToHandle = ( request ) => {
+	if ( wcHandleMap[ request ] ) {
+		return wcHandleMap[ request ];
+	}
+};
+
+
+
 
 const getLiveReloadPort = ( inputPort ) => {
 	const parsedPort = parseInt( inputPort, 10 );
@@ -42,6 +66,12 @@ module.exports = {
 			port: getLiveReloadPort(process.env.WP_LIVE_RELOAD_PORT),
 		}),
 		!process.env.WP_NO_EXTERNALS &&
-		new DependencyExtractionWebpackPlugin(),
+		new DependencyExtractionWebpackPlugin(
+			{
+			  injectPolyfill: true,
+			  requestToExternal,
+			  requestToHandle,
+			}
+		),
 	].filter(Boolean)
 }

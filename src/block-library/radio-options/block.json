@@ -1,0 +1,17 @@
+{
+  	"$schema": "https://json.schemastore.org/block.json",
+	"apiVersion": 2,
+	"name": "extended-checkout/radio-options",
+	"version": "0.1.0",
+	"title": "Radio Options",
+	"category": "text",
+	"icon": "smiley",
+	"description": "Block two.",
+	"supports": {
+		"html": false
+	},
+	"textdomain": "radio-options",
+	"editorScript": "file:../../../build/js/radio-options/radio-options.js",
+	"editorStyle": "file:../../../build/css/radio-options.css",
+	"style": "file:../../../build/css/style-radio-options.css"
+}
