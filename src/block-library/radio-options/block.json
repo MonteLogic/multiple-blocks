@@ -6,7 +6,7 @@
 	"title": "Radio Options",
 	"category": "text",
 	"icon": "smiley",
-	"description": "Block two.",
+	"description": "An input field with Radio Options.",
 	"supports": {
 		"html": false
 	},

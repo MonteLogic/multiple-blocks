@@ -40,3 +40,30 @@ function create_block_multi_block_plugin_block_init()
 	}
 }
 add_action('init', 'create_block_multi_block_plugin_block_init');
+
+
+
+add_action( 'plugins_loaded', function() {
+	if ( class_exists( '\Automattic\WooCommerce\Blocks\Package' ) ) {
+		require dirname( __FILE__ ) . '/woocommerce-blocks-integration.php';
+		add_action(
+			'woocommerce_blocks_checkout_block_registration',
+			function( $integration_registry ) {
+				$integration_registry->register( new Extended_Checkout_Blocks_Integration()
+			);
+			},
+			10,
+			1
+		);
+	
+		add_action(
+			'woocommerce_blocks_checkout_update_order_from_request',
+			function( $order, $request ) {
+				$optin = $request['extensions']['automatewoo'][ 'optin' ];
+				// your logic
+			},
+			10,
+			2
+		);
+	}
+} );

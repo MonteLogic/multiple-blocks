@@ -14,11 +14,7 @@
   * Internal dependencies
   */
  import './style.scss';
- const { optinDefaultText } = getSetting( 'newsletter-test_data', '' );
-
-
-
-
+ const { optinDefaultText } = getSetting( 'extended-checkout_data', '' );
 
 export const Edit = ( { attributes, setAttributes } ) => {
 	const { text } = attributes;
@@ -26,7 +22,7 @@ export const Edit = ( { attributes, setAttributes } ) => {
 	return (
 		<div { ...blockProps }>
 			<InspectorControls>
-				<PanelBody title={ __( 'Block options', 'newsletter-test' ) }>
+				<PanelBody title={ __( 'Block options', 'extended-checkout' ) }>
 					Options for the block go here.
 				</PanelBody>
 			</InspectorControls>
