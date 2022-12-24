@@ -11,7 +11,6 @@
 		"html": false
 	},
 	"textdomain": "radio-options",
-	"editorScript": "file:../../../build/js/radio-options/radio-options.js",
 	"editorStyle": "file:../../../build/css/radio-options.css",
 	"style": "file:../../../build/css/style-radio-options.css"
 }

@@ -71,6 +71,7 @@ class Extended_Checkout_Blocks_Integration implements IntegrationInterface {
 				'version'      => $this->get_file_version( $script_asset_path ),
 			);
 
+			// Changed block.json of this block to remove the editorScript so this works. 
 		wp_register_script(
 			'extended-checkout-editor',
 			$script_url,
@@ -116,14 +117,14 @@ class Extended_Checkout_Blocks_Integration implements IntegrationInterface {
 		return $data;
 	}
 
-	// /**
-	//  * Register blocks.
-	//  */
-	// public function register_editor_blocks() {
-	// 	register_block_type( dirname( __FILE__ ) . '/src/block-library/radio-options', array(
-	// 		'editor_script' => 'extended-checkout-editor',
-	// 	) );
-	// }
+	/**
+	 * Register blocks.
+	 */
+	public function register_editor_blocks() {
+		register_block_type( dirname( __FILE__ ) . '/src/block-library/radio-options', array(
+			'editor_script' => 'extended-checkout-editor',
+		) );
+	}
 
 	/**
 	 * This allows dynamic (JS) blocks to access attributes in the frontend.
